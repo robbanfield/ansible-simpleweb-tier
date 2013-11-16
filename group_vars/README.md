@@ -1,0 +1,1 @@
+Vars for Particular groups
