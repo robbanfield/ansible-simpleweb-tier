@@ -22,7 +22,7 @@ mysql_select_db("testingdatabase");
 
 $query="INSERT INTO traffic(client,server) VALUES ('". $_SERVER["REMOTE_ADDR"]."','".  $_SERVER["SERVER_ADDR"] ."')";
 if (mysql_query($query)) { 
-	echo "Your entry was logged into the database";
+	echo "<p>Your entry was logged into the database";
 } else {
 	echo("<P>Error adding new record. Query error below:<br>" .
 	mysql_error() . "<br>"); 

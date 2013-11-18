@@ -2,11 +2,11 @@
 #=====
 # AWS Network
 # VPC ID, of default VPC, something that has a 'default subnet'
-vpcid: "vpc-8f63ffe7"
+vpcid: "<< vpc-XXX >>"
 #@TODO - CONFIGURE HERE
 
 # A Default subnet in the above vpcid
-vpc_subnet_id: "subnet-8063ffe8"
+vpc_subnet_id: "<< subnet-XXX >>"
 #@TODO - CONFIGURE HERE
 
 # Default region to launch into.
@@ -15,7 +15,8 @@ region: "us-west-2"
 #=====
 # SECURITY: Override on the command line
 # Default Keypair name. This keypair must already exist in ec2
-keypair: gandalf_aws
+keypair: "<< key >>"
+#@TODO - CONFIGURE HERE
     
 # Where to allow ssh_access from
 ssh_access: "184.66.29.198/32"    
@@ -53,5 +54,6 @@ num_webservers: 2
 mysql_port: 3306
 dbuser: root
 dbname: testingdatabase
+#@ TODO: You should really change this!
 upassword: veryinsecureitem
 
