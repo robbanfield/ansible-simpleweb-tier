@@ -1,0 +1,7 @@
+---
+- name: Deploy simple application
+  template: src=adder.php dest=/var/www/adder.php owner=www-data group=www-data mode=0444
+
+- name: Restart Apache
+  service: name=apache2 state=restarted
+  

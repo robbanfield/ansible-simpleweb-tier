@@ -1,0 +1,13 @@
+---
+# This role installs HAProxy and configures it.
+- name: Download and install haproxy 
+  apt: name={{ item }} state=present
+  with_items:
+  - haproxy
+
+- name: Enable haproxy
+  template: src=haproxy.j2 dest=/etc/default/haproxy
+
+- name: Configure the haproxy cnf file with hosts
+  template: src=haproxy.cfg.j2 dest=/etc/haproxy/haproxy.cfg
+  notify: restart haproxy

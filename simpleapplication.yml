@@ -1,0 +1,21 @@
+---
+# Requires a valid DB and Web Server group already running and configured.
+- name: Deploy simple application database
+  hosts: tag_ansible_group_dbservers
+  # Assuming Ubuntu base machines
+  user: ubuntu
+  sudo: True
+  gather_facts: true
+
+  roles:
+  - applicationdb
+ 
+- name: Deploy simple application to webservers
+  hosts: tag_ansible_group_webservers
+  # Assuming Ubuntu base machines
+  user: ubuntu
+  sudo: True
+  gather_facts: true
+
+  roles:
+  - application

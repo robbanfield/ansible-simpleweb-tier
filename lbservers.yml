@@ -1,0 +1,25 @@
+---
+# Assumes The tag_ansible_group_lbservers (as defined by instances) group is defined
+# either in the local hosts or by infrastructure setup
+
+
+# Reload the web servers, to ensure the group var is correctly populated and available 
+# for the haproxy configuration tasks inside role haproxy.
+- name: reload web server details
+  hosts: tag_ansible_group_webservers
+  user: ubuntu
+  gather_facts: True
+  tasks: []
+   
+- name: Configure Load Balance Servers
+  hosts: tag_ansible_group_lbservers
+  # Assuming Ubuntu base machines
+  user: ubuntu
+  sudo: True
+  gather_facts: True
+          
+  roles:
+    - common
+    - haproxy 
+    
+

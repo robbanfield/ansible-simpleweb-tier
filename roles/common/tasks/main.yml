@@ -1,0 +1,15 @@
+---
+# Install some helpful system packages
+
+- name: Install system packages (apt version)
+  apt: pkg={{ item }} state=latest
+  with_items:
+    - vim
+    - ntp 
+    - unzip
+    - zip
+    - tree
+  when: ansible_distribution == 'Ubuntu'
+
+- name: Ensure NTP is up and running
+  action: service name=ntp state=started

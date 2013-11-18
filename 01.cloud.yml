@@ -1,0 +1,23 @@
+---
+# Starting Play
+- name: Launch Entier Cloud Infrastructure
+  hosts: 127.0.0.1
+  connection: local
+  gather_facts: false
+
+
+# Build the could servers
+- include: cloud_inf.yml
+
+# Process web server
+- include: dbserver.yml
+
+# Process the webservers, 
+- include: webservers.yml
+
+# Build the load balancer
+- include: lbservers.yml
+
+# Deploy simple application
+- include: simpleapplication.yml
+

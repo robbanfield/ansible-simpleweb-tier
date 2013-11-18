@@ -1,0 +1,13 @@
+---
+# Load and learn db servers  
+- name: Copy the database schema file
+  copy: src=schema.sql dest=/tmp/schema.sql
+  
+- name: Copy the database init script from template
+  template: src=initdb.sh dest=/tmp/initdb.sh owner=ubuntu mode=0700
+    
+- name: Init the schema
+  command: /bin/bash /tmp/initdb.sh
+  
+#- name: cleanup
+#  command: rm /tmp/schema.sql /tmp/initdb.sh

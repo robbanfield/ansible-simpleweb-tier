@@ -1,0 +1,15 @@
+---
+# DB Server
+# Assumes The tag_ansible_group_lbservers (as defined by instances) group is defined
+# either in the local hosts or by infrastructure setup
+- name: Configure Database Servers
+  hosts: tag_ansible_group_dbservers
+  # Assuming Ubuntu base machines
+  user: ubuntu
+  sudo: True
+  gather_facts: True
+          
+  roles:
+    - common
+    - mysql 
+    

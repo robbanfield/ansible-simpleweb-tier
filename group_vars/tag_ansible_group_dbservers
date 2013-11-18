@@ -1,0 +1,5 @@
+---
+# DB Server vars.
+# Name of the service daemon
+mysqlservice: mysql
+

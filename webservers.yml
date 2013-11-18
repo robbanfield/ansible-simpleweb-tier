@@ -1,0 +1,15 @@
+---
+# Assumes The tag_ansible_group_webservers (as defined by instances) group is defined, either in the local hosts
+# Or by infrastructure setup
+
+- name: Configure WebServers
+  hosts: tag_ansible_group_webservers
+  # Assuming Ubuntu base machines
+  user: ubuntu
+  sudo: True
+  gather_facts: true
+  
+  roles:
+    - common
+    - webserver 
+    

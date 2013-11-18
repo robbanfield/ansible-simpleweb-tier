@@ -1,0 +1,11 @@
+---
+# Provision a new server.
+- include: aws_ec2.yml purpose="Web Server" inf_ansible_group=webservers count=1
+
+# Update it and the rest of the custers configuration
+- include: webservers.yml
+
+- include: simpleapplication.yml
+
+
+        

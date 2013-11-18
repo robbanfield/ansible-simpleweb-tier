@@ -1,0 +1,57 @@
+---
+#=====
+# AWS Network
+# VPC ID, of default VPC, something that has a 'default subnet'
+vpcid: "vpc-8f63ffe7"
+#@TODO - CONFIGURE HERE
+
+# A Default subnet in the above vpcid
+vpc_subnet_id: "subnet-8063ffe8"
+#@TODO - CONFIGURE HERE
+
+# Default region to launch into.
+region: "us-west-2"
+
+#=====
+# SECURITY: Override on the command line
+# Default Keypair name. This keypair must already exist in ec2
+keypair: gandalf_aws
+    
+# Where to allow ssh_access from
+ssh_access: "184.66.29.198/32"    
+#@TODO - CONFIGURE HERE
+
+#=====
+# Instance Details
+# Size of instance, t1.micro small, free/cheap
+ec2_instance_type: "t1.micro"
+
+# The Default AMI Instance - 
+#  ubuntu/images/ebs/ubuntu-precise-12.04-amd64-server-20131003
+image: ami-6aad335a
+
+# Default instance count
+count: 1
+
+#=====
+# Instance Tagging 
+# Used to create an AWS tag element, that helps label what the infrastructure item was created for.
+purpose: "was not overridden"
+
+# Name of the ansible group that this new resource will be identified as.
+inf_ansible_group: "not set"
+
+# Global Web config
+httpd_port: 80
+
+#=====
+# Number of web servers to launch
+num_webservers: 2
+
+#=====
+# Shared database items:
+mysql_port: 3306
+dbuser: root
+dbname: testingdatabase
+upassword: veryinsecureitem
+

@@ -1,0 +1,39 @@
+---
+- name: Launch Infrastructure
+  hosts: 127.0.0.1
+  gather_facts: false
+
+  tasks:
+  # Create an appropriate EC2 Security group
+  - local_action:
+      # Web traffic is very open anyone can hit either side directly.
+      name: Ansible Scary traffic security group
+      module: ec2_group
+      description: "To open to traffic, restrict SSH. "
+      vpc_id: "{{ vpcid }}"
+      region: "{{ region }}" 
+      rules:
+        - proto:     tcp
+          from_port: 80
+          to_port:   80
+          cidr_ip:   0.0.0.0/0
+        - proto:     tcp
+          from_port: 3306
+          to_port:   3306
+          cidr_ip:   0.0.0.0/0          
+        - proto:     tcp
+          from_port: 22
+          to_port:   22
+          cidr_ip:   "{{ ssh_access }}"
+    register: securityGroup
+
+
+- include: aws_ec2.yml purpose="Database Server" inf_ansible_group=dbservers count=1
+
+# Note: While the group name is a short logical item here, via ec2, this creates a tag, and
+# The infrastructure is looked up by that tag, eg: lbservers -> tag_ansible_group_lbservers
+
+- include: aws_ec2.yml purpose="Load Balancer" inf_ansible_group=lbservers count=1 
+- include: aws_ec2.yml purpose="Web Server" inf_ansible_group=webservers count={{ num_webservers }}
+
+        

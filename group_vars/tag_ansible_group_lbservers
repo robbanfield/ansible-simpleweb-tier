@@ -1,0 +1,17 @@
+---
+# File for the HAproxy configuration - based on the ansible examples project
+# HAProxy supports "http" and "tcp". For SSL, SMTP, etc, use "tcp".
+mode: http
+
+# port on which the lb should listen
+listenport: 80
+
+# enable haproxy
+haproxy_enabled: 1
+
+# A name for the proxy daemon.
+daemonname: testapache
+
+# Balancing Algorithm Avalilable options: roundrobin,source,leastconn,source,uri
+# (if persistance is required use source)
+balance: roundrobin 
